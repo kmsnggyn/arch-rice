@@ -1,5 +1,9 @@
 # Fresh Arch setup
 
+## 🛠️ Setup Scripts
+- `scripts/setup.sh` – installs packages, creates symlinks, sets theme
+- `scripts/finalize-dotfiles.sh` – copies configs into ~/.config and removes symlink dependency
+
 1. Touchpad settings
 - Disable tap to drag
 - Enable three finger drag
