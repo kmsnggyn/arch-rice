@@ -43,10 +43,11 @@ while true; do
 
   # restart Waybar
   log_reload() {
-  echo "[$(timestamp)] ↻ Reloading configs and restarting Waybar"
-  echo "[$(timestamp)] ↻ Reloading configs and restarting Waybar" >> ~/.cache/theme-render.log
-}
+    echo "[$(timestamp)] ↻ Reloading configs and restarting Waybar"
+    echo "[$(timestamp)] ↻ Reloading configs and restarting Waybar" >>~/.cache/theme-render.log
+  }
   killall waybar 2>/dev/null || true
   sleep 0.2
-  waybar & disown
+  waybar &
+  disown
 done

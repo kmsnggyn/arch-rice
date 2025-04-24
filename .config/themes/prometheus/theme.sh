@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
-# ~/.config/colors/colors-sg.sh
-# Central “colors‑sg” palette for all your configs
 
 # borders and margins
 export CS_BORDER0="#353535"
 export CS_BORDER1="#C2C2C2"
-export BDRAD=8		# radius
-export BDTHK=2		# thickness
-export MGN=8	# outside margin
-export MGN_IN=$((MGN/2))	# inside margin
-export BARWD=$((1920-2*MGN))	# bar width, based on 1920 width
-export BARHT=36				# bar height
+export BDRAD=8                   # radius
+export BDTHK=2                   # thickness
+export MGN=8                     # outside margin
+export MGN_IN=$((MGN / 2))       # inside margin
+export BARWD=$((1920 - 2 * MGN)) # bar width, based on 1920 width
+export BARHT=36                  # bar height
 
 # special
 export CS_BG="#212121"
@@ -41,12 +39,11 @@ export CS_WHITE_BR="#c5c8c6"
 export CS_OPAC1="${CS_OPAC1:-1.0}"
 export CS_OPAC0="${CS_OPAC2:-1}"
 
-
 # Now generate ARGB versions for Hyprland (full opacity = 0xff)
 for col in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE \
-           BLACK_BR RED_BR GREEN_BR YELLOW_BR BLUE_BR MAGENTA_BR CYAN_BR WHITE_BR BORDER0 BORDER1; do
+  BLACK_BR RED_BR GREEN_BR YELLOW_BR BLUE_BR MAGENTA_BR CYAN_BR WHITE_BR BORDER0 BORDER1; do
   var="CS_${col}"
-  hex="${!var}"                # e.g. "#c5c8c6"
-  hex_nop="${hex#\#}"          # strips "#", gives "c5c8c6"
+  hex="${!var}"       # e.g. "#c5c8c6"
+  hex_nop="${hex#\#}" # strips "#", gives "c5c8c6"
   export "${var}_ARGB=0xff${hex_nop}"
 done

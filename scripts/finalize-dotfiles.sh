@@ -1,24 +1,24 @@
 #!/bin/bash
 set -e
 
-echo "📦 Finalizing dotfiles..."
+echo "🧼 Finalizing dotfiles – converting symlinks to real folders..."
 
-declare -a components=("hypr" "waybar" "kitty" "walker" "scripts")
+for link in "$HOME/.config/"*; do
+  # Only process symlinks
+  if [ -L "$link" ]; then
+    target=$(readlink "$link")
 
-for comp in "${components[@]}"; do
-  src="$HOME/.dotfiles-pth/.config/$comp"
-  dest="$HOME/.config/$comp"
+    # Only process symlinks pointing to ~/.dotfiles-pth
+    if [[ "$target" == $HOME/.dotfiles-pth/* ]]; then
+      comp=$(basename "$link")
+      src="$target"
+      dest="$HOME/.config/$comp"
 
-  if [ -L "$dest" ]; then
-    echo "🔁 Replacing symlinked $dest with real copy..."
-    rm "$dest"
-  elif [ -d "$dest" ]; then
-    echo "📁 Backing up existing $dest to $dest.backup"
-    mv "$dest" "$dest.backup"
+      echo "🔁 Replacing symlinked $comp with real files..."
+
+      rm "$dest"
+      cp -r "$src" "$dest"
+      echo "✅ Finalized $comp"
+    fi
   fi
-
-  cp -r "$src" "$dest"
 done
-
-echo "✅ Dotfiles have been finalized into ~/.config"
-echo "🧼 You can now safely delete ~/.dotfiles-pth if you wish."

@@ -1,18 +1,17 @@
 #!/bin/bash
 set -e
 
-#!/bin/bash
-set -e
+echo "🌱 Starting Arch dotfiles setup..."
 
-echo "🌱 Fresh Arch setup started..."
-
+# ----------------------------------------
 # 1. Install essential packages
+# ----------------------------------------
+
 echo "📦 Installing core packages..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed \
   git \
   base-devel \
-  libinput \
   kitty \
   zsh \
   zenity \
@@ -20,34 +19,75 @@ sudo pacman -S --needed \
   unzip \
   curl \
   --noconfirm
+yay -S --needed libinput-three-finger-drag
 
-# 2. Symlink config folders
+# ----------------------------------------
+# 2. Interactive config folder linking
+# ----------------------------------------
 
-# Remove existing config if it exists and is not already a symlink
-if [ -e "$HOME/.config/hypr" ] && [ ! -L "$HOME/.config/hypr" ]; then
-  echo "⚠️ Backing up existing ~/.config/hypr"
-  mv ~/.config/hypr ~/.config/hypr.backup
+echo ""
+echo "📋 Scanning available components in ~/.dotfiles-pth/.config/..."
+echo "Select which ones to link (y/n):"
+
+for src in "$HOME/.dotfiles-pth/.config/"*; do
+  comp=$(basename "$src")
+  target="$HOME/.config/$comp"
+
+  read -rp "🛠️  Sync $comp? [y/N]: " answer
+  case "$answer" in
+  [yY][eE][sS] | [yY])
+    # Back up existing folder or symlink
+    if [ -L "$target" ]; then
+      echo "🧹 Removing symlink: $target"
+      rm "$target"
+    elif [ -e "$target" ]; then
+      backup="${target}.backup"
+      if [ -e "$backup" ]; then
+        timestamp=$(date +%s)
+        backup="${backup}_${timestamp}"
+      fi
+      echo "📁 Backing up existing $target → $backup"
+      mv "$target" "$backup"
+    fi
+
+    echo "✅ Linking $target → $src"
+    ln -sf "$src" "$target"
+    ;;
+  *)
+    echo "⏩ Skipping $comp"
+    ;;
+  esac
+done
+
+# ----------------------------------------
+# 3. Copy themes and set current
+# ----------------------------------------
+
+echo ""
+echo "🎨 Copying themes into ~/.config/themes..."
+
+if [ -e "$HOME/.config/themes" ] && [ ! -L "$HOME/.config/themes" ]; then
+  backup="$HOME/.config/themes.backup"
+  if [ -e "$backup" ]; then
+    timestamp=$(date +%s)
+    backup="${backup}_${timestamp}"
+  fi
+  echo "📁 Backing up existing ~/.config/themes → $backup"
+  mv "$HOME/.config/themes" "$backup"
 fi
 
-# Create symlink
-ln -sf ~/.dotfiles-pth/.config/hypr ~/.config/hypr
-
-echo "🔗 Linking config folders..."
-ln -sf ~/.dotfiles-pth/.config/hypr ~/.config/hypr
-ln -sf ~/.dotfiles-pth/.config/waybar ~/.config/waybar
-ln -sf ~/.dotfiles-pth/.config/kitty ~/.config/kitty
-ln -sf ~/.dotfiles-pth/.config/walker ~/.config/walker
-ln -sf ~/.dotfiles-pth/.config/scripts ~/.config/scripts
-
-# 3. Copy themes instead of symlinking
-echo "🎨 Copying themes to ~/.config"
 cp -r ~/.dotfiles-pth/.config/themes ~/.config/
 
-# 4. Symlink only the active theme as 'current'
+echo "🔁 Setting current theme → prometheus"
 ln -sf ~/.config/themes/prometheus ~/.config/themes/current
 
-# 5. Render templates
-echo "🛠️ Rendering templates..."
+# ----------------------------------------
+# 4. Render template files
+# ----------------------------------------
+
+echo ""
+echo "🛠️ Rendering templates using theme variables..."
 ~/.config/scripts/render-dotfiles.sh
 
-echo "✅ Setup complete. You may now rice in peace."
+echo ""
+echo "✅ Setup complete. Your system is now riced and ready."

@@ -1,38 +1,34 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash
+set -e
 
-# 1) Load your palette and opacity
-source ~/.config/themes/current/theme.sh
+echo "🎨 Rendering dotfiles from templates..."
 
-# Import env variables:
-VARS=$(tr '\n' ' ' <~/.config/themes/vars.list)
+# Load current theme variables
+theme_vars="$HOME/.config/themes/current/theme.sh"
 
-echo "[INFO] Rendering with vars:"
-echo "$VARS"
+if [ ! -f "$theme_vars" ]; then
+  echo "❌ Theme file not found: $theme_vars"
+  exit 1
+fi
 
-# 2) Render Hyprland
-envsubst "$VARS" \
-  <~/.config/hypr/hyprland.conf.tmpl \
-  >~/.config/hypr/hyprland.conf
+source "$theme_vars"
 
-# 3) Render Waybar
-envsubst "$VARS" \
-  <~/.config/waybar/style.css.tmpl \
-  >~/.config/waybar/style.css
+# Define your templated files here
+declare -A files=(
+  ["$HOME/.config/hypr/hyprland.conf.tmpl"]="$HOME/.config/hypr/hyprland.conf"
+  ["$HOME/.config/waybar/config.jsonc.tmpl"]="$HOME/.config/waybar/config.jsonc"
+  ["$HOME/.config/walker/themes/prometheus.css.tmpl"]="$HOME/.config/walker/themes/prometheus.css"
+  ["$HOME/.config/walker/themes/prometheus.toml.tmpl"]="$HOME/.config/walker/themes/prometheus.toml"
+)
 
-envsubst "$VARS" \
-  <~/.config/waybar/config.jsonc.tmpl \
-  >~/.config/waybar/config.jsonc
+for input in "${!files[@]}"; do
+  output="${files[$input]}"
+  if [ -f "$input" ]; then
+    echo "⚙️  Rendering: $(basename "$input") → $(basename "$output")"
+    envsubst <"$input" >"$output"
+  else
+    echo "⚠️  Template not found: $input"
+  fi
+done
 
-# 4) Render Walker
-envsubst "$VARS" \
-  <~/.config/walker/themes/theme.css.tmpl \
-  >~/.config/walker/themes/theme.css
-
-envsubst "$VARS" \
-  <~/.config/walker/themes/theme.toml.tmpl \
-  >~/.config/walker/themes/theme.toml
-
-# 4) Render Geany
-
-echo "✅ All templates rendered with CS_* values."
+echo "✅ Render complete."
