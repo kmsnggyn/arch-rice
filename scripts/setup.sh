@@ -1,28 +1,53 @@
 #!/bin/bash
 set -e
 
+#!/bin/bash
+set -e
+
 echo "🌱 Fresh Arch setup started..."
 
 # 1. Install essential packages
-sudo pacman -S --needed hyprland waybar kitty zsh git base-devel wget --noconfirm
+echo "📦 Installing core packages..."
+sudo pacman -Syu --noconfirm
+sudo pacman -S --needed \
+  git \
+  base-devel \
+  libinput \
+  kitty \
+  zsh \
+  zenity \
+  wget \
+  unzip \
+  curl \
+  --noconfirm
 
-# 2. Clone your dotfiles (if not already there)
-# git clone git@github.com:kmsnggyn/arch-rice.git ~/Documents/arch-rice
+# 2. Symlink config folders
 
-# 3. Symlink config folders
+# Remove existing config if it exists and is not already a symlink
+if [ -e "$HOME/.config/hypr" ] && [ ! -L "$HOME/.config/hypr" ]; then
+  echo "⚠️ Backing up existing ~/.config/hypr"
+  mv ~/.config/hypr ~/.config/hypr.backup
+fi
+
+# Create symlink
+ln -sf ~/.dotfiles-pth/.config/hypr ~/.config/hypr
+
 echo "🔗 Linking config folders..."
-ln -sf ~/Documents/arch-rice/.config/hypr ~/.config/hypr
-ln -sf ~/Documents/arch-rice/.config/waybar ~/.config/waybar
-ln -sf ~/Documents/arch-rice/.config/kitty ~/.config/kitty
-ln -sf ~/Documents/arch-rice/.config/walker ~/.config/walker
-ln -sf ~/Documents/arch-rice/.config/scripts ~/.config/scripts
+ln -sf ~/.dotfiles-pth/.config/hypr ~/.config/hypr
+ln -sf ~/.dotfiles-pth/.config/waybar ~/.config/waybar
+ln -sf ~/.dotfiles-pth/.config/kitty ~/.config/kitty
+ln -sf ~/.dotfiles-pth/.config/walker ~/.config/walker
+ln -sf ~/.dotfiles-pth/.config/scripts ~/.config/scripts
 
-# 4. Set up theme symlink
-echo "🎨 Setting theme to Prometheus..."
+# 3. Copy themes instead of symlinking
+echo "🎨 Copying themes to ~/.config"
+cp -r ~/.dotfiles-pth/.config/themes ~/.config/
+
+# 4. Symlink only the active theme as 'current'
 ln -sf ~/.config/themes/prometheus ~/.config/themes/current
 
-# 5. Render templates using envsubst
+# 5. Render templates
 echo "🛠️ Rendering templates..."
 ~/.config/scripts/render-dotfiles.sh
 
-echo "✅ Setup complete. Please restart your session or source configs."
+echo "✅ Setup complete. You may now rice in peace."

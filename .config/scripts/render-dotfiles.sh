@@ -5,8 +5,7 @@ set -euo pipefail
 source ~/.config/themes/current/theme.sh
 
 # Import env variables:
-VARS=$(tr '\n' ' ' < ~/.config/themes/vars.list)
-
+VARS=$(tr '\n' ' ' <~/.config/themes/vars.list)
 
 echo "[INFO] Rendering with vars:"
 echo "$VARS"
@@ -26,16 +25,14 @@ envsubst "$VARS" \
   >~/.config/waybar/config.jsonc
 
 # 4) Render Walker
-envsubst "$VARS"\
+envsubst "$VARS" \
   <~/.config/walker/themes/theme.css.tmpl \
   >~/.config/walker/themes/theme.css
 
-envsubst "$VARS"\
+envsubst "$VARS" \
   <~/.config/walker/themes/theme.toml.tmpl \
   >~/.config/walker/themes/theme.toml
 
-
 # 4) Render Geany
-
 
 echo "✅ All templates rendered with CS_* values."
