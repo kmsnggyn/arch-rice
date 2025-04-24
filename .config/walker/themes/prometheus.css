@@ -1,0 +1,167 @@
+@define-color foreground #c8c8c8;
+@define-color background #212121;
+@define-color color1 #5e8d87;
+
+#window,
+#box,
+#aiScroll,
+#aiList,
+#search,
+#password,
+#input,
+#prompt,
+#clear,
+#typeahead,
+#list,
+child,
+scrollbar,
+slider,
+#item,
+#text,
+#label,
+#bar,
+#sub,
+#activationlabel {
+  all: unset;
+}
+
+#cfgerr {
+  background: rgba(255, 0, 0, 0.4);
+  margin-top: 20px;
+  padding: 8px;
+  font-size: 1.2em;
+}
+
+#window {
+  color: @foreground;
+}
+
+#box {
+  border-radius: 8px;
+  background: @background;
+  padding: 8px;
+  border: 2px solid #C2C2C2;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    0 20px 50px rgba(0, 0, 0, 0.22);
+}
+
+#search {
+  border-radius: 8px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.22);
+  background: lighter(@background);
+  padding: 8px;
+}
+
+#prompt {
+margin-left: 4px;
+  margin-right: 12px;
+  color: @foreground;
+  opacity: ${OPAC1};
+}
+
+#clear {
+  color: @foreground;
+  opacity: %{OPAC1};
+}
+
+#password,
+#input,
+#typeahead {
+  border-radius: 8;
+}
+
+#input {
+  font-size: 11pt;
+  background: none;
+}
+
+#password {
+}
+
+#spinner {
+  padding: 8px;
+}
+
+#typeahead {
+  color: @foreground;
+  opacity: 0.8;
+}
+
+#input placeholder {
+  opacity: 0.5;
+}
+
+#list {
+}
+
+child {
+  padding: 8px;
+  border-radius: 8px;
+}
+
+child:selected,
+child:hover {
+  background: alpha(@color1, 0.4);
+}
+
+/* text part of the search results */
+#item {
+	font-size: 11pt;
+	color: @foreground
+}
+
+#icon {;
+	margin-right: 8px;
+}
+
+#text {
+	color: @{CS_RED};
+	font-size: 11pt;
+}
+
+#label {
+/*  font-weight: 500; ????????*/
+}
+
+/* This is the description of the serach result */
+#sub {
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+#activationlabel {
+}
+
+#bar {
+}
+
+.barentry {
+}
+
+.activation #activationlabel {
+}
+
+.activation #text,
+.activation #icon,
+.activation #search {
+  opacity: 0.5;
+}
+
+.aiItem {
+  padding: 10px;
+  border-radius: 2px;
+  color: @foreground;
+  background: @background;
+}
+
+.aiItem.user {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.aiItem.assistant {
+  background: lighter(@background);
+}
