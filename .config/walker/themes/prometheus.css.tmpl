@@ -1,6 +1,6 @@
-@define-color foreground ${CS_FG};
-@define-color background ${CS_BG};
-@define-color color1 ${CS_CYAN};
+@define-color foreground ${FG};
+@define-color background ${BG};
+@define-color color1 ${CYAN};
 
 #window,
 #box,
@@ -27,7 +27,7 @@ slider,
 
 #cfgerr {
   background: rgba(255, 0, 0, 0.4);
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 8px;
   font-size: 1.2em;
 }
@@ -40,7 +40,7 @@ slider,
   border-radius: ${BDRAD}px;
   background: @background;
   padding: ${MGN}px;
-  border: ${BDTHK}px solid ${CS_BORDER1};
+  border: ${BDTHK}px solid ${BORDER1};
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.3),
     0 20px 50px rgba(0, 0, 0, 0.22);
@@ -118,7 +118,7 @@ child:hover {
 }
 
 #text {
-	color: @{CS_RED};
+	color: @{RED};
 	font-size: 11pt;
 }
 

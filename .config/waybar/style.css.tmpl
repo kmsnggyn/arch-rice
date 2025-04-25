@@ -1,102 +1,101 @@
-/* ────────────────────────────────────────────────────── */
-/* colors‑sg palette for Waybar (populated via envsubst) */
-/* ────────────────────────────────────────────────────── */
 
-/* special */
-@define-color fg       ${CS_FG};
-@define-color bg       ${CS_BG};
-@define-color cursor   ${CS_FG};
+/* ============================================================== */
+/*                      _                      _         _        */ 
+/* __      ____ _ _   _| |__   __ _ _ __   ___| |_ _   _| | ___   */
+/* \ \ /\ / / _` | | | | '_ \ / _` | '__| / __| __| | | | |/ _ \  */
+/*  \ V  V / (_| | |_| | |_) | (_| | |    \__ \ |_| |_| | |  __/  */
+/*   \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |___/\__|\__, |_|\___|  */
+/*                |___/                            |___/          */
+/* ============================================================== */
 
-/* normal */
-@define-color black    ${CS_BLACK};
-@define-color red      ${CS_RED};
-@define-color green    ${CS_GREEN};
-@define-color yellow   ${CS_YELLOW};
-@define-color blue     ${CS_BLUE};
-@define-color magenta  ${CS_MAGENTA};
-@define-color cyan     ${CS_CYAN};
-@define-color white    ${CS_WHITE};
+/* ------------------------------------------------- */
+/* color palette for Waybar (populated via envsubst) */
+/* ------------------------------------------------- */
 
-/* bright variants (_br) */
-@define-color black-br ${CS_BLACK_BR};
-@define-color red-br   ${CS_RED_BR};
-@define-color green-br ${CS_GREEN_BR};
-@define-color yellow-br ${CS_YELLOW_BR};
-@define-color blue-br  ${CS_BLUE_BR};
-@define-color magenta-br ${CS_MAGENTA_BR};
-@define-color cyan-br  ${CS_CYAN_BR};
-@define-color white-br ${CS_WHITE_BR};
+/* Special */
+@define-color fg       ${FG};
+@define-color bg       ${BG};
+@define-color cursor   ${FG};
 
-/* alias for border or divider */
-@define-color bd0       ${CS_BORDER0};
-@define-color bd1       ${CS_BORDER1};
+/* Normal */
+@define-color black    ${BLACK};
+@define-color red      ${RED};
+@define-color green    ${GREEN};
+@define-color yellow   ${YELLOW};
+@define-color blue     ${BLUE};
+@define-color magenta  ${MAGENTA};
+@define-color cyan     ${CYAN};
+@define-color white    ${WHITE};
 
-/* opacities */
+/* Bright Variants (_br) */
+@define-color black-br ${BLACK_BR};
+@define-color red-br   ${RED_BR};
+@define-color green-br ${GREEN_BR};
+@define-color yellow-br ${YELLOW_BR};
+@define-color blue-br  ${BLUE_BR};
+@define-color magenta-br ${MAGENTA_BR};
+@define-color cyan-br  ${CYAN_BR};
+@define-color white-br ${WHITE_BR};
 
-/* -----------------------------------------------------
- * General
- * ----------------------------------------------------- */
+/* Border Alias */
+@define-color bd0       ${BORDER0};
+@define-color bd1       ${BORDER1};
 
+/* ----------------------------------------------------- */
+/* General Styles                                        */
+/* ----------------------------------------------------- */
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Noto nerd font;
-    font-size: 11pt;
+    color: @fg;
     border: 0;
-    border-radius: 0px;
+    border-radius: 0;
+    background-color: transparent;
 }
 
 window#waybar {
+    font-family: "NotoSans Nerd Font";
     background-color: @bg;
-    color: @fg;
-    transition-property: background-color;
-    transition-duration: 2s;
-    border: ${BDTHK}px solid transparent;
-    /* border: ${BDTHK}px solid @bg; */
+    transition: background-color 2s;
+    border: ${BDTHK}px solid @bg;
     border-radius: 0 0 ${BDRAD}px ${BDRAD}px;
 }
 
-button {
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background-color: @red;
-}
-
-/* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: @yellow;
-    color: @bg;
+    background-color: @magenta;
 }
 
-/* -----------------------------------------------------
- * Workspaces
- * ----------------------------------------------------- */
-
+/* ----------------------------------------------------- */
+/* Workspaces                                            */
+/* ----------------------------------------------------- */
 #workspaces {
-		border-radius:	0 0 ${BDRAD}px ${BDRAD}px;
+    font-family: "NotoSansM Nerd Font Mono";
+    font-size: 20pt;
 }
 
 #workspaces button {
-		font-family: "Courier New";
-		color: @fg;
-	    padding: 0 10pt 0 8pt;
-	    transition: all 0.2s ease-in-out;
-	    background-color: transparent;
+    color: @fg;
+    padding: 0 6pt;
+    transition: all 0.5s ease-in-out;
+    background-color: transparent;
+}
+
+#workspaces button.special {
+    background-color: @blue;
+}
+
+#workspaces button.special.active {
+    background-color: @red;
 }
 
 #workspaces button.active {
-    	background-color: @white;
+    background-color: @white;
 }
 
 #workspaces button:hover {
-		background: @black-br;
+    background: @black-br;
 }
 
-#workspaces button:first-child{
-		font-family: "Courier New";
-		padding: 0 8pt 0 10pt;
-		border-radius: 0 0 0 8px;
+#workspaces button:first-child {
+    border-radius: 0 0 0 8px;
 }
 
 #mode {
@@ -104,63 +103,57 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-
-/* -----------------------------------------------------
- * Window
- * ----------------------------------------------------- */
-
+/* ----------------------------------------------------- */
+/* Window                                                */
+/* ----------------------------------------------------- */
 #window {
-    background:     transparent;
-    border:         ${BDTHK}px solid transparent;
-    border-radius:  ${BDRAD}px;
-    color:          @fg;
-	font-family:	'Courier New';
-    font-size:      11pt;
+    background: transparent;
+    border: ${BDTHK}px solid transparent;
+    border-radius: ${BDRAD}px;
+    color: @fg;
+    font-family: "NotoSans Nerd Font";
+    font-size: 11pt;
     font-weight: normal;
-    opacity: ${CS_OPAC1};
-    padding: 0 10px;
+    opacity: ${OPAC1};
+    padding: 0 12px;
 }
-
 
 window#waybar.empty #window {
-    background-color:transparent;
+    background-color: transparent;
+    color: transparent;
 }
 
-
-
-/* -----------------------------------------------------
- * Taskbar
- * ----------------------------------------------------- */
-
+/* ----------------------------------------------------- */
+/* Taskbar                                               */
+/* ----------------------------------------------------- */
 #taskbar {
-    background: @backgroundlight;
-    margin: 3px 15px 3px 0px;
-    padding:0px;
-    border-radius: 15px;
+    background: transparent;
+    margin: 0;
+    padding: 0 10px;
+    border-radius: 0;
     font-weight: normal;
-    font-style: normal;
-    opacity: ${CS_OPAC1};
-    border: 3px solid @backgroundlight;
+    opacity: ${OPAC1};
 }
 
 #taskbar button {
-    margin:0;
-    border-radius: 15px;
-    padding: 0px 5px 0px 5px;
+    margin: 0;
+    padding: 0 5px;
+}
+
+#taskbar button.active {
+    color: @blue;
 }
 
 #taskbar.empty {
-    background:transparent;
-    border:0;
-    padding:0;
-    margin:0;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
-/* -----------------------------------------------------
- * Modules
- * ----------------------------------------------------- */
-
-/* if you want a little spacing between modules */
+/* ----------------------------------------------------- */
+/* Module Spacing                                        */
+/* ----------------------------------------------------- */
 #modules-left .module,
 #modules-center .module,
 #modules-right .module {
@@ -175,6 +168,7 @@ window#waybar.empty #window {
     margin-right: 0;
 }
 
+/* Common Module Padding */
 #clock,
 #battery,
 #cpu,
@@ -192,181 +186,65 @@ window#waybar.empty #window {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0px 10px;
-    color: @fg;
+    padding: 0 6pt;
 }
 
-/* -----------------------------------------------------
- * Hardware Group
- * ----------------------------------------------------- */
-
-#pulseaudio,#temperature,#disk,#memory,#cpu,#language,#backlight,#network {
-    margin:0px 4px;
-    padding:0px;
+/* ----------------------------------------------------- */
+/* Hardware Group                                        */
+/* ----------------------------------------------------- */
+#pulseaudio,
+#temperature,
+#disk,
+#memory,
+#cpu,
+#language,
+#backlight,
+#network {
+    margin: 0 4px;
+    padding: 0;
     font-size: 10pt;
 }
 
-
-/* -----------------------------------------------------
- * Battery
- * ----------------------------------------------------- */
-
+/* ----------------------------------------------------- */
+/* Battery Styles                                        */
+/* ----------------------------------------------------- */
 #battery {
-    padding: 0 12px;
+    font-family: "NotoSansM Nerd Font Mono";
+    font-size: 16pt;
 }
 
-#battery.charging {}
 #battery.full {
     background-color: @bd0;
 }
 
 @keyframes blink {
-    to {
-        color: rgba(0, 0, 0, 0);
-    }
+    to { color: rgba(0, 0, 0, 0); }
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    color: @fg;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation: blink 0.5s steps(12) infinite alternate;
 }
 
+/* ----------------------------------------------------- */
+/* Power Profiles                                        */
+/* ----------------------------------------------------- */
 #power-profiles-daemon {
+    font-family: "NotoSansM Nerd Font Mono";
+    font-size: 20pt;
 }
 
-#power-profiles-daemon.performance {
-}
-
-#power-profiles-daemon.balanced {
-}
-
-#power-profiles-daemon.power-saver {
-}
-
-label:focus {
-}
-
-#clock {
-    font-weight:    bold;
-    font-size:      11pt;
-}
-#cpu {
-}
-
-#memory {
-}
-
-#disk {
-}
-
-#backlight {
-}
-
+/* ----------------------------------------------------- */
+/* Network                                               */
+/* ----------------------------------------------------- */
 #network {
-    border-left: ${BDTHK}px solid @bd0;
+    font-family: "NotoSansM Nerd Font Mono";
+    font-size: 20pt;
     padding-left: 6pt;
 }
 
-#network.disconnected {
-}
-
-#pulseaudio {
-}
-
-#pulseaudio.muted {
-}
-
-#wireplumber {
-}
-
-#wireplumber.muted {
-}
-
-#custom-media {
-}
-
-#custom-media.custom-spotify {
-}
-
-#custom-media.custom-vlc {
-}
-
+/* Custom Power Button                                   */
 #custom-power {
     font-weight: bold;
     font-size: 12pt;
 }
-#temperature {
-}
 
-#temperature.critical {
-}
-
-#tray {
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-}
-
-#idle_inhibitor {
-}
-
-#idle_inhibitor.activated {
-    color: #2d3436;
-}
-
-#mpd {
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-}
-
-#mpd.stopped {
-}
-
-#mpd.paused {
-}
-
-#language {
-}
-
-#keyboard-state {
-}
-
-#keyboard-state > label {
-}
-
-#keyboard-state > label.locked {
-}
-
-#scratchpad {
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
-
-#privacy {
-}
-
-#privacy-item {
-}
-
-#privacy-item.screenshare {
-}
-
-#privacy-item.audio-in {
-}
-
-#privacy-item.audio-out {
-}
