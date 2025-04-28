@@ -8,13 +8,6 @@ echo "📦 Installing core packages..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed \
   git \
-  base-devel \
-  libinput \
-  kitty \
-  zsh \
-  zenity \
-  wget \
-  unzip \
   curl \
   --noconfirm
 
