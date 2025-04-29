@@ -36,7 +36,7 @@ export GREEN_BR="#b5bd68"
 export YELLOW_BR="#f0c674"
 export BLUE_BR="#81a2be"
 export MAGENTA_BR="#b294bb"
-export CYAN_BR="#8abeb7b"
+export CYAN_BR="#8abeb7"
 export WHITE_BR="#c5c8c6"
 
 # Opacity (0.0–1.0)

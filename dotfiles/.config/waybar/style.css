@@ -34,7 +34,7 @@
 @define-color yellow-br #f0c674;
 @define-color blue-br  #81a2be;
 @define-color magenta-br #b294bb;
-@define-color cyan-br  #8abeb7;
+@define-color cyan-br  #8abeb7b;
 @define-color white-br #c5c8c6;
 
 /* Border Alias */
@@ -114,7 +114,7 @@ window#waybar {
     font-family: "NotoSans Nerd Font";
     font-size: 11pt;
     font-weight: normal;
-    opacity: 1.0;
+    opacity: 0.9;
     padding: 0 12px;
 }
 
@@ -132,7 +132,7 @@ window#waybar.empty #window {
     padding: 0 10px;
     border-radius: 0;
     font-weight: normal;
-    opacity: 1.0;
+    opacity: 0.9;
 }
 
 #taskbar button {
