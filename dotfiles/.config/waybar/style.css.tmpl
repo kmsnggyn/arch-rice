@@ -16,6 +16,8 @@
 @define-color fg       ${FG};
 @define-color bg       ${BG};
 @define-color cursor   ${FG};
+@define-color bg-argb  ${BG_ARGB};
+
 
 /* Normal */
 @define-color black    ${BLACK};
@@ -53,7 +55,7 @@
 
 window#waybar {
     font-family: "NotoSans Nerd Font";
-    background-color: @bg;
+    background-color: @bg-argb;
     transition: background-color 2s;
     border: ${BDTHK}px solid @bg;
     border-radius: 0 0 ${BDRAD}px ${BDRAD}px;
