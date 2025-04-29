@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # ─── Files to watch ───────────────────────────────────────────────────
-CONFIG_FILES=(
-  "$HOME/.config/themes/current/theme.sh"               # Theme file
+CONFIG_FILES=(               # Theme file
   "$HOME/.config/waybar/config.jsonc.tmpl"               # Waybar config template
   "$HOME/.config/waybar/style.css.tmpl"                  # Waybar style template
   "$HOME/.config/hypr/hyprland.conf.tmpl"                # Hyprland config template
