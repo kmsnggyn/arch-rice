@@ -60,7 +60,7 @@ done
 # GTK & Icon theme settings
 export GTK_THEME_NAME="PrometheusDark"
 export GTK_FONT="Inter 11"
-export GTK_SELECTION_BG="$ACCENT"
+export GTK_SELECTION_BG="$CYAN_BR"
 export GTK_SUCCESS_BG="#50FA7B"
 export ICON_THEME_NAME="Papirus"
 
