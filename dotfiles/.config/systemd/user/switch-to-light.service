@@ -1,0 +1,7 @@
+[Unit]
+Description=Switch to light theme
+
+[Service]
+Type=oneshot
+ExecStart=/home/<user>/arch-rice/scripts/switch-theme.sh light-theme
+
