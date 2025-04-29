@@ -40,8 +40,8 @@ export CYAN_BR="#8abeb7"
 export WHITE_BR="#c5c8c6"
 
 # Opacity (0.0–1.0)
-export OPAC1=0.7
-export OPAC0=0.6
+export OPAC1=0.95
+export OPAC0=0.85
 
 # Compute alpha hex from OPAC1
 alpha_dec=$(echo "$OPAC1 * 255" | bc -l)
