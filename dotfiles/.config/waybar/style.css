@@ -54,7 +54,7 @@
 window#waybar {
     font-family: "NotoSans Nerd Font";
     background-color: @bg;
-    opacity: 0.7;
+    opacity: 0.95;
     transition: background-color 2s;
     border: 2px solid @bg;
     border-radius: 0 0 10px 10px;
@@ -115,7 +115,7 @@ window#waybar {
     font-family: "NotoSans Nerd Font";
     font-size: 11pt;
     font-weight: normal;
-    opacity: 0.7;
+    opacity: 0.95;
     padding: 0 12px;
 }
 
@@ -133,7 +133,7 @@ window#waybar.empty #window {
     padding: 0 10px;
     border-radius: 0;
     font-weight: normal;
-    opacity: 0.7;
+    opacity: 0.95;
 }
 
 #taskbar button {
