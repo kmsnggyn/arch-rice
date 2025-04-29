@@ -1,33 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Auto theme switcher: select a theme, render, link, and reload components
+# Auto theme switcher: pick a theme, update current, render, link, reload.
 # Usage: switch-theme.sh [theme]
 
-# Resolve directories\script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Resolve directories
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 base_dir="$script_dir/.."
 themes_dir="$base_dir/themes"
 scripts_dir="$script_dir"
 dotfiles_dir="$base_dir/dotfiles"
 
-# Scan themes
-mapfile -t themes < <(find "$themes_dir" -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | sort)
+# Gather available themes
+mapfile -t themes < <(
+  find "$themes_dir" -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | sort
+)
 if [[ ${#themes[@]} -eq 0 ]]; then
   echo "❌ No themes found in $themes_dir"
   exit 1
 fi
 
-# Determine selected theme
+# Determine which theme to use
 if [[ $# -ge 1 ]]; then
   THEME="$1"
-  if [[ ! -d "$themes_dir/$THEME" ]]; then
-    echo "❌ Unknown theme: $THEME"
-    exit 1
-  fi
+  [[ -d "$themes_dir/$THEME" ]] || { echo "❌ Unknown theme: $THEME"; exit 1; }
 else
   echo "Available themes:"
   for i in "${!themes[@]}"; do
-    printf "%3d) %s\n" "$((i+1))" "${themes[i]}"
+    printf "  %3d) %s\n" "$((i+1))" "${themes[i]}"
   done
   while true; do
     read -p "Select theme [1-${#themes[@]}]: " choice
@@ -41,17 +41,21 @@ fi
 
 echo "🌈 Switching to theme: $THEME"
 
-# 1) Render templates
-"$scripts_dir/render-dotfiles.sh" "$THEME"
+# 1) Update the 'current' symlink
+ln -sfn "$themes_dir/$THEME" "$themes_dir/current"
+echo "📝 Updated themes/current → $THEME"
 
-# 2) Link dotfiles
+# 2) Render all dotfiles for the current theme
+"$scripts_dir/render-dotfiles.sh"
+
+# 3) Link rendered files into $HOME
 "$scripts_dir/link-dotfiles.sh"
 
-# 3) Reload Hyprland
+# 4) Reload Hyprland
 echo "🔄 Reloading Hyprland..."
-hyprctl reload || echo "⚠️  hyprctl not found or failed"
+hyprctl reload || echo "⚠️ hyprctl not found or failed"
 
-# 4) Restart Waybar
+# 5) Restart Waybar
 echo "🛑 Restarting Waybar..."
 if pgrep -x waybar &>/dev/null; then
   killall waybar
@@ -59,7 +63,7 @@ if pgrep -x waybar &>/dev/null; then
 fi
 waybar & disown
 
-# 5) Reload Mako (notifications)
+# 6) Reload Mako notifications
 echo "🔔 Reloading Mako..."
 if pgrep -x mako &>/dev/null; then
   killall -SIGUSR1 mako

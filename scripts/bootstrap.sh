@@ -70,5 +70,7 @@ if $LINK; then
   "$script_dir/link-dotfiles.sh"
 fi
 
+killall waybar && waybar & disown
+
 echo "✅ Bootstrap complete!"
 

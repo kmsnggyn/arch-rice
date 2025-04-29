@@ -12,6 +12,10 @@ CONFIG_FILES=(
   "$DOTFILES_DIR/.config/waybar/style.css.tmpl"
   "$DOTFILES_DIR/.config/hypr/hyprland.conf.tmpl"
   "$DOTFILES_DIR/.config/kitty/kitty.conf.tmpl"
+  "$DOTFILES_DIR/.config/waybar/config.jsonc"
+  "$DOTFILES_DIR/.config/waybar/style.css"
+  "$DOTFILES_DIR/.config/hypr/hyprland.conf"
+  "$DOTFILES_DIR/.config/kitty/kitty.conf"
 )
 
 # ─── Verify they exist ────────────────────────────────────────────────────
