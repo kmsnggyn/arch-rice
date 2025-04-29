@@ -54,7 +54,7 @@ for col in BG FG BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE \
            BORDER0 BORDER1; do
   hex="${!col}"
   hex_nop="${hex#\#}"
-  export "${col}_ARGB=#${ALPHA_HEX}${hex_nop}"
+  export "${col}_ARGB=0x${ALPHA_HEX}${hex_nop}"
 done
 
 # GTK & Icon theme settings
