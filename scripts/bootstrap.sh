@@ -42,7 +42,7 @@ if ! $RENDER; then
 fi
 if $RENDER; then
   echo "🎨 Rendering templates..."
-  "$script_dir/render-dotfiles.sh" prometheus-1
+  "$script_dir/render-dotfiles.sh"
 fi
 
 # 3) Backup existing files?
