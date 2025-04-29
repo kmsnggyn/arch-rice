@@ -16,8 +16,6 @@
 @define-color fg       #c8c8c8;
 @define-color bg       #212121;
 @define-color cursor   #c8c8c8;
-@define-color bg-argb  0xb2212121;
-
 
 /* Normal */
 @define-color black    #2e2e2e;
