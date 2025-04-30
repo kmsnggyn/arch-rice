@@ -55,8 +55,8 @@ window#waybar {
     font-family: "NotoSans Nerd Font";
     background-color: @bg;
     opacity: 0.95;
-    transition: background-color 2s;
-    border: 2px solid @bg;
+    transition: background-color 2;
+    border: 2px solid bd1;
     border-radius: 0 0 10px 10px;
 }
 
@@ -68,7 +68,7 @@ window#waybar {
 /* Workspaces                                            */
 /* ----------------------------------------------------- */
 #workspaces {
-    font-family: "NotoSansM Nerd Font Mono";
+    font-family: "NotoSans Nerd Font";
     font-size: 20pt;
 }
 
