@@ -25,7 +25,7 @@
   ],
 
   "modules-center": [                     // center-aligned modules
-    "hyprland/window",
+//    "hyprland/window",
     "clock"
   ],
 
@@ -40,9 +40,9 @@
     "hyprland/language",
     "network",
     "power-profiles-daemon",
-    "battery",
+    "battery"
     // "tray",
-    "custom/power"
+//    "custom/power"
   ],
 
   // ====================== Module Configs =========================
@@ -79,9 +79,11 @@
   },
 
   "clock": {                              // date & time
-    // "timezone": "Europe/Stockholm",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "timezone": "Europe/Stockholm",
+//    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
+    "format": "{:%Y-%m-%d %H:%M}",
+    "format-alt": "{%H:%M}"
   },
 
   "cpu": {                                // CPU usage

@@ -1,0 +1,36 @@
+# Take a look at the mako manpage with the command:
+#  man 5 mako
+# To view all configuration options.
+
+font= "NotoSansM Nerd Font" 9
+format=<b>%a ⏵</b> %s\n%b
+sort=-time
+layer=overlay
+anchor=top-right
+background-color=${BG}${OPAC0_HEX}
+width=320
+margin=${MGN}
+padding=6,6,10
+border-size=${BDTHK}
+border-color=${BORDER1}${OPAC0_HEX}
+border-radius=${BDRAD}
+icons=1
+max-icon-size=32
+ignore-timeout=1
+
+[urgency=normal]
+
+[urgency=high]
+background-color=${RED}${OPAC0_HEX}
+default-timeout=0
+
+[app-name=Spotify]
+background-color=#1ED760${OPAC0_HEX}
+border-color=${BLACK}
+text-color=${BLACK}
+
+[app-name=Thunderbird]
+background-color=${BLUE}${OPAC0_HEX}
+
+[summary~="log-.*"]
+border-color=#a3be8c

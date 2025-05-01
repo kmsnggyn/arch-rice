@@ -1,0 +1,234 @@
+* {
+    font-family: Noto Sans Nerd Font;
+	font-size: 11pt
+}
+
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+    opacity: 1;
+    background: ${RED};
+}
+
+.notification-row {
+    outline: 0px solid ${RED};
+    margin: -6px 0px;
+    padding: 0;
+}
+
+.notification {
+    background: transparent;
+    margin: 0px;
+}
+
+.notification-content {
+    background: ${BG};
+    padding: ${MGN_IN}px;
+    border-radius: ${BDRAD}px;
+    border: 2px solid ${BORDER1};
+    margin: 0;
+}
+
+.close-button {
+    background: transparent;
+    color: transparent;
+    text-shadow: none;
+    padding: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+}
+
+.close-button:hover {
+    box-shadow: none;
+    background: ${RED};
+    color: ${FG};
+    font-weight: bold;
+    transition: all .05s ease-in-out;
+    border-radius: ${BDRAD}px;
+}
+
+.notification-action {
+    color: ${BG};
+    margin: 2px 0px 0px 0px;
+    border: 2px solid ${BORDER1};
+    border-radius: ${BDRAD}px;
+    background: ${BORDER1};
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+    color: ${BG};
+    background: ${FG};
+}
+
+.summary {
+	padding-top: 0px;
+    font-size: 11pt;
+    color: ${FG};
+}
+
+.time {
+    font-size: 10pt;
+    color: ${BLUE};
+    margin-right: 2px
+}
+
+.body {
+    font-size: 10pt;
+    color: ${FG};
+}
+
+.control-center {
+    background: ${BG};
+    opacity: ${OPAC0};
+    border: 2px solid ${BORDER1};
+    border-radius: ${BDRAD}px;
+}
+
+.control-center-list {
+    background: ${RED};
+}
+
+.control-center-list-placeholder {
+    opacity: 0.1;
+}
+
+.floating-notifications {
+    background: transparent;
+}
+
+.blank-window {
+    background: alpha(black, 0.1)
+}
+
+.widget-title {
+    color: ${FG};
+    background: ${BG};
+    padding: 5px 10px;
+    margin: ${MGN_IN}px;
+    font-size: 11pt;
+    border-radius: ${BDRAD}px;
+}
+
+.widget-title>button {
+    font-size: 1rem;
+    color: ${FG};
+    text-shadow: none;
+    background: ${BLACK};
+    box-shadow: none;
+    border-radius: ${BDRAD}px;
+}
+
+.widget-title>button:hover {
+    background: ${BLACK_BR};
+    color: ${FG};
+}
+
+.widget-dnd {
+    background: ${BG};
+    padding: 5px 10px;
+    margin: ${MGN_IN}px;
+    border: none;
+    border-radius: ${BDRAD}px;
+    font-size: 11pt;
+    color: ${FG};
+}
+
+.widget-dnd>switch {
+	border: none;
+    border-radius: ${BDRAD}px;
+    background: ${BLACK_BR};
+}
+
+.widget-dnd>switch:checked {
+    background: ${MAGENTA};
+}
+
+.widget-dnd>switch slider {
+    background: ${BLACK};
+    border-radius: ${BDRAD}px
+}
+
+.widget-dnd>switch:checked slider {
+    background: ${BLACK};
+    border-radius: ${BDRAD}px
+}
+
+
+.widget-label {
+    margin: 10px 10px 5px 10px;
+}
+
+.widget-label>label {
+    font-size: 100pt;
+    color: @text-color;
+    margin: ${MGN}px;
+    border-radius: ${BDRAD}px;
+}
+
+.widget-volume {
+	background: ${BLACK};
+	margin: ${MGN_IN}px;
+}
+
+.widget-backlight {
+	background: ${BLACK};
+	margin: ${MGN_IN}px;
+}
+
+.widget-mpris {
+    color: ${FG};
+    background: ${BLACK};
+    padding: 0px;
+    margin: ${MGN_IN}px;
+    border-radius: ${BDRAD}px;
+}
+
+.widget-mpris > box > button {
+    border-radius: ${BDRAD}px;
+}
+
+.widget-mpris-player {
+    padding: ${MGN_IN}px ${MGN_IN}px;
+    margin: ${MGN_IN}px
+}
+
+.widget-mpris-title {
+    font-weight: 700;
+    font-size: 11pt;
+    color: ${FG};
+}
+
+.widget-mpris-subtitle {
+    font-size: 11pt;
+    color: ${FG};
+}
+
+.widget-buttons-grid {
+    font-size: x-large;
+    padding: 5px;
+    margin: ${MGN_IN}px;
+    border-radius: ${BDRAD}px;
+    background: ${BLACK};
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button {
+    margin: 2px;
+    background: ${BLACK};
+    border-radius: 5px;
+    color: ${FG};
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+    background: #d79921;
+    color: ${BLACK_BR};
+}
+
+.widget-menubar>box>.menu-button-bar>button {
+    border: none;
+    background: ${BLACK_BR};
+}
+
+.topbar-buttons>button {
+    border: none;
+    background: transparent;
+}

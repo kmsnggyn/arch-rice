@@ -1,6 +1,8 @@
-# use zsh login, then run tmux (attach/create "main" and run neofetch)
-shell zsh --login -c "tmux new-session -A -s main 'neofetch; exec zsh'"
+shell /bin/zsh
+font_family	NotoSansM Nerd Font
+font_size 11.0
 
+font_features f_liga=1
 
 # ─── Colors ──────────────────────────────────────────────────────────
 # Background and Foreground
@@ -37,3 +39,5 @@ cursor $CURSOR
 
 window_padding_width 4
 map kitty_mod+r set_tab_title
+
+neofetch
