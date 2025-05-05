@@ -54,6 +54,18 @@ window#waybar {
     border-radius: 0 0 10px 10px;
 }
 
+tooltip {
+  color: @fg;
+  background-color: @bg;
+  opacity: 0.9;
+  text-shadow: none;
+}
+
+tooltip * {
+  color: @fg;
+  text-shadow: none;
+}
+
 /* ----------------------------------------------------- */
 /* Workspaces                                            */
 /* ----------------------------------------------------- */
@@ -83,7 +95,7 @@ window#waybar {
 #workspaces button:first-child {
     border-left:   2px solid @bd1;
     border-bottom: 2px solid @bd1;
-    border-radius: 0 0 0 10;
+    border-radius: 0 0 0 10px;
     padding: 0 10pt 0 4pt;
 }
 
@@ -92,10 +104,9 @@ window#waybar {
 /* ----------------------------------------------------- */
 #taskbar {
     background: transparent;
-    font-family: "NotoSansM Nerd Font";
     font-size: 11pt;
-    letter-spacing: -1px;
-    margin: 0;
+    letter-spacing: 0px;
+    margin: 0px;
     opacity: 0.995;
     padding: 0 10px;
 }
@@ -109,22 +120,19 @@ window#waybar {
     transition: background 0.2s ease-in-out;
 }
 
-#taskbar button.active              { color: @blue; }
+#taskbar button.active {
+  color: @blue;
+  font-weight: bold;
+  }
 #taskbar button:hover,
-#taskbar button.active:hover        { color: @blue-br; }
-
+#taskbar button.active:hover {
+  color: @blue-br;
+  }
 #taskbar.empty {
     background: transparent;
     border: none;
     margin: 0;
     padding: 0;
-}
-
-/* 1. Style the pressed/dragging state via the :active pseudo-class */
-#taskbar button:active {
-  /* e.g. bright yellow background when you click & drag */
-  background-color: @yellow;
-  color: @black;
 }
 
 /* 2. If Waybar adds a 'dragging' class on buttons during a drag, you can style it too */
@@ -138,8 +146,6 @@ window#waybar {
   transition: background-color 0.2s ease-in-out,
               border       0.2s ease-in-out;
 }
-
-
 
 
 /* ----------------------------------------------------- */
@@ -208,7 +214,7 @@ window#waybar {
 }
 
 #battery.full {
-    background: @bd0;
+    background: transparent;
 }
 
 @keyframes blink {
@@ -217,6 +223,11 @@ window#waybar {
 
 #battery.critical:not(.charging) {
     animation: blink 0.5s steps(12) infinite alternate;
+}
+
+#battery.plugged {
+    color: @yellow;
+    background: @red;
 }
 
 
@@ -235,7 +246,7 @@ window#waybar {
 #network {
     font-family: "NotoSansM Nerd Font Mono";
     font-size: 20pt;
-    padding-left: 6pt;
+    padding-left: 0pt;
 }
 
 /* ----------------------------------------------------- */

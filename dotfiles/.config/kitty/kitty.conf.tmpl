@@ -10,7 +10,7 @@ background $BG
 foreground $FG
 
 # Normal colors
-color0 $BLACK
+color0 $BG
 color1 $RED
 color2 $GREEN
 color3 $YELLOW
@@ -37,7 +37,15 @@ cursor $CURSOR
 # border_width $BDTHK
 # border_color $BORDER0
 
-window_padding_width 4
+tab_bar_edge bottom
+tab_bar_min_tabs 1
+tab_bar_style powerline
+tab_powerline_style round
+tab_activity_symbol ◉
+tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{index}{'(%d)'%num_windows if num_windows > 1 else ''}: {(title.replace('seonggyun@arch:', '')[:6]+'…'+title.replace('seonggyun@arch:', '')[-6:]) if title.replace('seonggyun@arch:', '').rindex(title.replace('seonggyun@arch:', '')[-1]) + 1 > 13 else title.replace('seonggyun@arch:', '')}"
+active_tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}[{fmt.bold}{layout_name[:2].upper()}:{index}{fmt.nobold}]{'(%d)'%num_windows if num_windows > 1 else ''}: {(title[:6+(15 if title.startswith('seonggyun@arch:') else 0)]+'…'+title[-6:]) if title.rindex(title[-1]) + 1 > (13+(15 if title.startswith("seonggyun@arch:") else 0)) else title}"
+
+window_padding_width 2
 map kitty_mod+r set_tab_title
 
 neofetch
