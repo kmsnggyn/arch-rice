@@ -1,7 +1,8 @@
 window {
-`border: 2px solid #C2C2C2;
+border: 2px solid #C2C2C2;
 border-radius: 10px;
 background-color: #212121;
+opacity: 1;
 font-family: NotoSans Nerd Font;
 }
 

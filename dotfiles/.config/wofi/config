@@ -10,3 +10,4 @@ orientation=vertical
 content_halign=fill
 drun-display_generic=true
 case-insensitive=false
+layer = overlay
