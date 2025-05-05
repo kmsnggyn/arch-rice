@@ -30,6 +30,7 @@ WATCH_DIRS=(
   "$dotfiles_dir/.config/hypr"
   "$dotfiles_dir/.config/kitty"
   "$dotfiles_dir/.config/swaync"
+  "$dotfiles_dir/.config/wofi"
 )
 
 # ─── Startup check ─────────────────────────────────────────────────────────
@@ -44,7 +45,7 @@ restart_swaync() {
 }
 
 reload_swaync() {
-	restart_swaync
+  restart_swaync
   "$SWAYNC_BIN/swaync-client" -rs
 
   # ─── Test notifications for Spotify and Thunderbird ──────────────────────
@@ -130,6 +131,15 @@ while read -r path; do
         echo "SwayNC reloaded."
       else
         echo "SwayNC render failed—continuing." >&2
+      fi
+      ;;
+
+    "$dotfiles_dir/.config/wofi/"*)
+      echo "→ Wofi templates changed. Regenerating Wofi…"
+      if "$script_dir/render-dotfiles.sh" -t "$THEME" wofi; then
+        echo "Wofi config regenerated."
+      else
+        echo "Wofi render failed—continuing." >&2
       fi
       ;;
 
